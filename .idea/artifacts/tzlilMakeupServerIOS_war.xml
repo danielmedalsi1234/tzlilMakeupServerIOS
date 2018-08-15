@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="tzlilMakeupServerIOS:war">
+    <output-path>$PROJECT_DIR$/out/artifacts/tzlilMakeupServerIOS_war</output-path>
+    <root id="archive" name="tzlilMakeupServerIOS_war.war">
+      <element id="artifact" artifact-name="tzlilMakeupServerIOS:war exploded" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="mysql-connector-java-8.0.11" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
