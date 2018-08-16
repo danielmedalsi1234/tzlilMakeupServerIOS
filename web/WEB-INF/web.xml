@@ -22,6 +22,15 @@
         <url-pattern>/ServletImage</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>PullRequest</servlet-name>
+        <servlet-class>danielmedalsi1234.com.PullRequest</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PullRequest</servlet-name>
+        <url-pattern>/PullRequest</url-pattern>
+    </servlet-mapping>
+
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>
         <welcome-file>push_image.html</welcome-file>

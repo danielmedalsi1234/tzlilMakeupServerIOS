@@ -5,38 +5,53 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.*;
+import java.awt.*;
 import java.io.*;
 import java.net.URISyntaxException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet(name = "ServletImage",urlPatterns = "/ServletImage")
 public class ServletImage extends HttpServlet {
     int imageFileLength = 0;
     InputStream imageStream = null;
     File imageFile = null;
+    List<Blob> rsArr = new ArrayList();
     private static final String IMAGE_FILE = "/home/danielmedalsi1234/pic1.png";
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter printWriter = response.getWriter();
-        File Img = new File(request.getParameter("Img"));
-        printWriter.print("<html>");
-        printWriter.print("<body bgcolor=blue>");
-        printWriter.print("<br><font color=blue size=15>first_name: "+Img+"</font>");
-
-        printWriter.print("</body>");
-        printWriter.print("</html>");
-        try {
+        /*try {
             pullImagefromDatabase(Img);
         } catch (Exception e) {
             e.printStackTrace();
+        }*/
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = getConnection();
+            PreparedStatement ps = con.prepareStatement("select * from Album");
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()){
+                byte[] img = rs.getBytes("image");
+                ImageIcon image = new ImageIcon(img);
+                Image im = image.getImage();
+                Image myImage = im.getScaledInstance(100,100,Image.SCALE_SMOOTH);
+                ImageIcon newImage = new ImageIcon(myImage);
+
+            }
+            ps.close();
+            con.close();
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,"no data");
+            e.printStackTrace();
         }
+
     }
 
     public static void pullImagefromDatabase(File blob)throws Exception{
@@ -76,6 +91,11 @@ public class ServletImage extends HttpServlet {
             System.out.println("error connect");
         }
         return null;
+    }
+
+    public static void PullImage(){
+
+
     }
 
 
