@@ -52,9 +52,9 @@ public class PushContact extends javax.servlet.http.HttpServlet {
         }catch (Exception e){
             e.printStackTrace();
             System.out.println("try - insert error");
+            getConnection().close();
         }finally {
             System.out.println("finaly");
-
         }
     }
 
@@ -62,7 +62,7 @@ public class PushContact extends javax.servlet.http.HttpServlet {
         try {
             String driver = "com.mysql.cj.jdbc.Driver";
             //here enter url with/database
-            String url = "jdbc:mysql://104.196.206.60:3306/tzlilMakeUp";
+            String url = "jdbc:mysql://35.196.251.187:3306/tzlilMakeUp";
             //here enter username for mysql
             String user_name = "danielmedalsi1234";
             //here enter password for mysql
@@ -71,6 +71,7 @@ public class PushContact extends javax.servlet.http.HttpServlet {
             Connection conn = DriverManager.getConnection(url, user_name, password);
             System.out.println("connected");
             return conn;
+
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("error connect");

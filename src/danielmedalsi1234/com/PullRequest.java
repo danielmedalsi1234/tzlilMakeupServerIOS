@@ -37,11 +37,12 @@ public class PullRequest extends HttpServlet {
             ps = pushContact.getConnection().
                     prepareStatement("select * from Contacts");
             rs = ps.executeQuery();
-
             while (rs.next()) {
-                rsArr.add(rs.getString(1) + ",");
-
+                rsArr.add(rs.getString(1) + " - ");
+                rsArr.add(rs.getString(2) + " Phone: ");
+                rsArr.add(rs.getString(3) + "</br>");
             }
+            PushContact.getConnection().close();
         }catch (Exception e){
             e.printStackTrace();
             System.out.println("error!!!");

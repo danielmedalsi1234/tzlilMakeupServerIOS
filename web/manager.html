@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Manager</h2>
+
+<div id="demo">
+    <button type="button" onclick="loadXMLDoc()">Show Offers</button>
+</div>
+
+<script>
+    function loadXMLDoc() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("demo").innerHTML =
+                    this.responseText;
+            }
+        };
+        xhttp.open("GET", "http://35.196.251.187/tzlilMakeupServerIOS_war/PullRequest", true);
+        xhttp.send();
+    }
+</script>
+
+</body>
+</html>
