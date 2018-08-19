@@ -22,10 +22,10 @@ public class PushContact extends javax.servlet.http.HttpServlet {
         String phone = request.getParameter("txt_phone");
 
         printWriter.print("<html>");
-        printWriter.print("<body bgcolor=pink>");
-        printWriter.print("<br><font color=blue size=15>first_name: "+first_name+"</font>");
-        printWriter.print("<br><font color=blue size=15>first_name: "+last_name+"</font>");
-        printWriter.print("<br><font color=blue size=15>Phone: "+phone+"</font>");
+        printWriter.print("<body bgcolor=blue>");
+        printWriter.print("<br><font color=black size=15>first_name: "+first_name+"</font>");
+        printWriter.print("<br><font color=black size=15>first_name: "+last_name+"</font>");
+        printWriter.print("<br><font color=blcak size=15>Phone: "+phone+"</font>");
         printWriter.print("</body>");
         printWriter.print("</html>");
 

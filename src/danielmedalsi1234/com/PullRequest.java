@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -21,16 +22,16 @@ public class PullRequest extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        //send data to client
         PullNamesFromContacts();
         for (String name : rsArr) {
             response.getWriter().write(name);
         }
         rsArr.removeAll(rsArr);
     }
-    public void PullNamesFromContacts(){
+    public void PullNamesFromContacts()  {
         ResultSet rs;
         PreparedStatement ps;
+
         try {
             pushContact.getConnection();
             System.out.println("in connection");
@@ -38,9 +39,9 @@ public class PullRequest extends HttpServlet {
                     prepareStatement("select * from Contacts");
             rs = ps.executeQuery();
             while (rs.next()) {
-                rsArr.add(rs.getString(1) + " - ");
+                rsArr.add(rs.getString(1) + " ");
                 rsArr.add(rs.getString(2) + " Phone: ");
-                rsArr.add(rs.getString(3) + "</br>");
+                rsArr.add(rs.getString(3) + "</br></br>");
             }
             PushContact.getConnection().close();
         }catch (Exception e){
